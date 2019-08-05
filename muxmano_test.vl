@@ -1,0 +1,19 @@
+module
+mux_test;
+reg[15:0]A;
+reg[3:0]S;
+wire F;
+mux_16 M(.in(A),.sel(S),.out(F));
+initial
+begin
+$dumpfile("muxmano.vcd");
+$dumpvars(0,mux_test);
+$monitor($time,"A=%h,S=%h,F=%b",A,S,F);
+#4A=16'h3f0a;S=4'h0;
+#4S=4'h1;
+#4S=4'h5;
+#4S=4'hA;
+#4S=4'hD;
+#4$finish;
+end
+endmodule

@@ -1,0 +1,31 @@
+module alu_8(A,B,Oc,C,cr);
+input[7:0] A,B;
+input[1:0] Oc;
+output reg[15:0] C;
+output  reg cr;
+parameter  [1:0]ADD=2'b00,
+		SUB=2'b01,
+		MUL=2'b10,
+		AND=2'b11;
+always@(Oc)
+begin
+	case(Oc)
+	ADD: begin
+		assign C=A+B;
+		assign cr=C[8];
+     		end
+	SUB: begin
+		assign C=A-B;
+		assign cr=C[8];
+     		end
+	MUL: begin
+		assign C=A*B;
+     		end
+	AND: begin
+		assign C=A&B;
+     		end
+
+	endcase
+end
+
+endmodule
